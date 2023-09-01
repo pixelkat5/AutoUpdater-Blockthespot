@@ -1,21 +1,14 @@
 ﻿#ifndef _PATTERNSCANNER_H
 #define _PATTERNSCANNER_H
 
-#include <iostream>
 #include <Windows.h>
+#pragma warning(disable: 4530)
+#include <iostream>
 #include <vector>
+#pragma warning(default: 4530)
 #include <format>
 #include <span>
 #include "Memory.h"
-
-enum class AssemblyCode {
-    PUSH_VALUE = 0x68,
-    JUMP_IF_EQUAL = 0x74,
-    JUMP_IF_NOT_EQUAL = 0x75,
-    JUMP_RELATIVE_SHORT = 0xEB,
-    JUMP_RELATIVE_LONG = 0xE9,
-    CALL_RELATIVE = 0xE8
-};
 
 enum class ScanType {
     Unknown,    // The scan type is unknown
@@ -37,25 +30,25 @@ enum class ValueType {
 
 class Scan {
 public:
-    Scan() = default;
+    Scan() : m_address(0), m_module_info(0, 0) {}
     explicit Scan(std::uintptr_t address, std::pair<std::size_t, std::size_t> module_info);
     operator std::uintptr_t() const;
 
     void print_address(std::wstring_view name = {}) const;
 
-    bool is_found() const;
+    bool is_found(const std::vector<std::uint8_t>& value = {}) const;
     std::uint8_t* data() const;
     Scan rva() const;
     Scan offset(std::size_t value) const;
     Scan disassemble() const;
 
-    bool hook(PVOID p_detours) const;
+    void** hook(void* hook_function) const;
     bool unhook() const;
 
     Scan scan_first(std::wstring_view value, ScanType scan_type = ScanType::Unknown, bool forward = true) const;
 
-    std::vector<Scan> get_all_matching_codes(AssemblyCode code, std::size_t base_address = 0, std::size_t image_size = 0) const;
-    Scan get_first_matching_code(AssemblyCode code, std::size_t base_address = 0, std::size_t image_size = 0) const;
+    std::vector<Scan> get_all_matching_codes(std::vector<std::uint8_t> pattern, bool check_displacement = true, std::size_t base_address = 0, std::size_t image_size = 0) const;
+    Scan get_first_matching_code(std::vector<std::uint8_t> pattern, bool check_displacement = true, std::size_t base_address = 0, std::size_t image_size = 0) const;
 
     template <typename T>
     T read() const {

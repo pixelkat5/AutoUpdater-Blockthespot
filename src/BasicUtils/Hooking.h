@@ -2,25 +2,35 @@
 #define _HOOKING_H
 
 #include <Windows.h>
+#pragma warning(disable: 4530)
 #include <vector>
-#include <map>
+#pragma warning(default: 4530)
 
 class Hooking {
 public:
-    using HookData = std::map<PVOID*, PVOID>;
-    static bool HookFunction(HookData data);
-    static bool HookFunction(PVOID* ppPointers, PVOID pDetours);
-    static bool UnhookFunction(HookData data);
-    static bool UnhookFunction(PVOID* ppPointers, PVOID pDetours = nullptr);
-
+    static bool HookFunction(void** function_pointer, void* hook_function);
+    static bool UnhookFunction(void** function_pointer, void* hook_function = nullptr);
 
 private:
-    static bool Begin();
-    static bool Commit();
-    static void InsertHookFunction(PVOID* ppPointers, PVOID pDetours);
-    static void EraseHookFunction(PVOID* ppPointers);
-    static PVOID FindHookFunction(PVOID* ppPointers);
-    static HookData HookFunctionList;
+#ifndef ENABLE_DETOURS
+    struct HookData {
+        void** function_pointer;
+        std::uint8_t* code;
+        std::uint8_t* new_code;
+        std::vector<std::uint8_t> original_code;
+    };
+
+    static std::vector<HookData> hook_data_list;
+
+    static bool BackupFunctionCode(HookData& hook_data);
+    static bool ApplyHook(HookData& hook_data, void* hook_function);
+    static bool RestoreFunctionCode(HookData& hook_data);
+    static std::size_t GetOriginalCodeSize(std::uint8_t* code);
+
+    static std::uint8_t* GenerateImmediateJump(std::uint8_t* code, std::uint8_t* jump_value);
+    static std::uint8_t* GenerateIndirectJump(std::uint8_t* code, std::uint8_t** jump_value);
+    static std::uint8_t* GenerateBreakpoint(std::uint8_t* code, std::uint8_t* limit);
+#endif
 };
 
 #endif //_HOOKING_H
