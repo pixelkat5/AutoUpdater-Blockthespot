@@ -24,7 +24,7 @@
 :warning: This mod is for the [**Desktop Application**](https://www.spotify.com/download/windows/) of Spotify on Windows only and **not the Microsoft Store version**.
 
 ### Installation/Update:
-* Just download and run [BlockTheSpot.bat](https://raw.githack.com/mrpond/BlockTheSpot/master/BlockTheSpot.bat)  
+* Just download and run [BlockTheSpot.bat](https://raw.githack.com/mrpond/BlockTheSpot/master/BlockTheSpot.bat)
 
 or
 
@@ -46,6 +46,20 @@ or
 * Remove `dpapi.dll` and `config.ini` from Spotify directory.
 or
 * Reinstall Spotify
+
+#### BlockTheSpot with Spicetify Installation/Update:
+
+* Just download and run [BlockTheSpot + Spicetify.bat](https://raw.githack.com/mrpond/BlockTheSpot/master/BlockTheSpot%20%2B%20Spicetify.bat) then answer the prompts when given
+
+### BlockTheSpot with Spicetify Uninstall:
+
+```powershell
+spicetify restore
+rmdir -r -fo $env:APPDATA\spicetify
+rmdir -r -fo $env:LOCALAPPDATA\spicetify
+rm -fo $env:APPDATA\spotify\dpapi.dll
+rm -fo $env:APPDATA\spotify\config.ini
+```
 
 ### Additional Notes:
 
