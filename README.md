@@ -5,8 +5,8 @@
     <h4 align="center">A multi-purpose adblocker and skip-bypass for the <strong>Spotify for Windows (64 bit)</strong> </h4>
     <h5 align="center">Please support Spotify by purchasing premium</h5>
     <p align="center">
-        <strong>Last updated:</strong> 14 February 2024<br>
-        <strong>Last tested version:</strong> Spotify for Windows (64 bit) 1.2.31.1205.g4d59ad7c
+        <strong>Last updated:</strong> 18 March 2024<br>
+        <strong>Last tested version:</strong> Spotify for Windows (64 bit) 1.2.33.1039.g8ddb5918
     </p> 
 </center>
 
@@ -60,6 +60,17 @@ rmdir -r -fo $env:LOCALAPPDATA\spicetify
 rm -fo $env:APPDATA\spotify\dpapi.dll
 rm -fo $env:APPDATA\spotify\config.ini
 ```
+
+### Disabling Automatic Updates
+
+The automatic update feature is enabled by default. To disable it:
+
+1. Navigate to the directory where Spotify is installed: `%APPDATA%\Spotify`.
+2. Open the `config.ini` file.
+3. Set `Enable_Auto_Update` to `0` under the `[Config]` section.
+4. Save your changes and close the file.
+
+Automatic updates will now be disabled. If you wish to update, you'll need to do so manually.
 
 ### Additional Notes:
 
