@@ -25,6 +25,8 @@ public:
     using Array = std::vector<Json>;
     using Value = std::variant<std::nullptr_t, Object, Array, std::wstring, bool, int, float, double>;
 
+    enum class ValueType { Null, Object, Array, String, Boolean, Integer, Double };
+
     template <typename T>
         requires std::is_constructible_v<Value, T>
     Json(T&& value) : m_value(std::forward<T>(value)) {}
@@ -62,7 +64,6 @@ public:
 
     bool is_null() const;
     bool is_integer() const;
-    bool is_float() const;
     bool is_double() const;
     bool is_boolean() const;
     bool is_string() const;
@@ -70,7 +71,6 @@ public:
     bool is_array() const;
 
     int get_integer() const;
-    float get_float() const;
     double get_double() const;
     bool get_boolean() const;
     std::wstring get_string() const;
@@ -127,8 +127,11 @@ public:
     void clear();
     bool empty() const;
     size_t size() const;
+    ValueType type() const;
     
     bool contains(const std::wstring& key) const;
+    size_t count(const std::wstring& key) const;
+    void erase(const std::wstring& key);
 
     std::wstring dump(int indent = 0) const;
 
