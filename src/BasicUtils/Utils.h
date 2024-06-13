@@ -47,7 +47,7 @@ namespace Utils
 #endif
 
     template<typename T>
-    constexpr auto TypeConvert(const T& arg)
+    const auto& TypeConvert(const T& arg)
     {
         if constexpr (std::is_same_v<T, const wchar_t*>) {
             return std::wstring_view(arg);

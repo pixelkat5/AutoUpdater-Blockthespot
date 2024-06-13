@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <mutex>
 #include <unordered_map>
+#include <string>
 #include <detours.h>
 
 namespace Hooking {
