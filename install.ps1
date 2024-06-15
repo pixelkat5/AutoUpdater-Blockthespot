@@ -264,7 +264,7 @@ Write-Host 'Patching Spotify...'
 $patchFiles = (Join-Path -Path $PWD -ChildPath 'dpapi.dll'), (Join-Path -Path $PWD -ChildPath 'config.ini')
 
 Copy-Item -LiteralPath $patchFiles -Destination "$spotifyDirectory"
-Remove-Item -LiteralPath (Join-Path -Path $spotifyDirectory -ChildPath 'blockthespot_settings.json') -Force # temporary
+Remove-Item -LiteralPath (Join-Path -Path $spotifyDirectory -ChildPath 'blockthespot_settings.json') -Force -ErrorAction SilentlyContinue # temporary
 
 function Install-VcRedist {
   $architecture = if ([Environment]::Is64BitOperatingSystem) { "x64" } else { "x86" }
