@@ -5,10 +5,18 @@
     <h4 align="center">A multi-purpose adblocker and skip-bypass for the <strong>Spotify for Windows (64 bit)</strong> </h4>
     <h5 align="center">Please support Spotify by purchasing premium</h5>
     <p align="center">
-        <strong>Last updated:</strong> 14 October 2024<br>
-        <strong>Last tested version:</strong> Spotify for Windows (64 bit) 1.2.41.434.g39a25e2c
+        <strong>Last updated:</strong> 22 October 2024<br>
+        <strong>Last tested version:</strong> Spotify for Windows (64 bit) 1.2.48.405.gf2c48e6f
     </p> 
 </center>
+
+### Virus warning on windows defender issue:
+* the code is on Github, everyone can check it.
+* BTS utilize Appveyor, https://www.appveyor.com/.
+* Any code change on Github, Appveyor will build it and make release on Github.
+* false positive can happen. but don't trust me on this, try verify by compile your own BTS and compare with the release.
+- new update are json's patch signature for Spotify latest version, which trigger autobuild
+technically it the same DLL as before, you can continue to use 2024.7.22.109 or 2024.10.14.110(just with new hash and maybe compiler update), 
 
 ### Features:
 * Unlocks all premium features except downloads, and "Very High" audio quality.
