@@ -15,8 +15,6 @@
 * BTS utilize Appveyor, https://www.appveyor.com/.
 * Any code change on Github, Appveyor will build it and make release on Github.
 * false positive can happen. but don't trust me on this, try verify by compile your own BTS and compare with the release.
-- new update are json's patch signature for Spotify latest version, which trigger autobuild
-- technically it the same DLL as before, you can continue to use 2024.7.22.109 or 2024.10.14.110(just with new hash and maybe compiler update), 
 
 ### Features:
 * Unlocks all premium features except downloads, and "Very High" audio quality.
