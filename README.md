@@ -6,7 +6,7 @@
     <h5 align="center">Please support Spotify by purchasing premium</h5>
     <p align="center">
         <strong>Last updated:</strong> 28 October 2024<br>
-        <strong>Last tested version:</strong> Spotify for Windows (64 bit) 1.2.53.440.g7b2f582a
+        <strong>Last tested version:</strong> Spotify for Windows (64 bit) 1.2.55.235.g5eaa0904
     </p> 
 </center>
 
