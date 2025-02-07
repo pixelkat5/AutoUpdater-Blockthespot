@@ -13,10 +13,10 @@
   },
   "Developer": {
     "x64": {
-      "Signature": "80 E3 01 48 8B 95 ?? ?? ?? ?? 48 83 FA 10",
+      "Signature": "80 E3 01 48 8B 95 ?? ?? ?? ?? 48 83 FA 0F",
       "Value": "B3 01 90",
       "Offset": 0,
-      "Address": 1072051
+      "Address": -1
     },
     "x32": {
       "Signature": "25 01 FF FF FF 89 ?? ?? ?? FF FF",
